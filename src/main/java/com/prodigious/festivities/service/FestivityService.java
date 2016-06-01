@@ -1,25 +1,23 @@
 package com.prodigious.festivities.service;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import com.prodigious.festivities.dto.FestivityDTO;
+import javax.transaction.Transactional;
+
+import org.springframework.data.repository.CrudRepository;
+
 import com.prodigious.festivities.model.Festivity;
 
-public interface FestivityService {
+@Transactional
+public interface FestivityService extends CrudRepository<Festivity, Integer> {
 
-	ArrayList<Festivity> findAll();
+	List<Festivity> findByName(String name);
 
-	ArrayList<Festivity> findByName(String name);
+	List<Festivity> findByStartDateAfter(Date startDate);
 
-	ArrayList<Festivity> findByStartName(Date startDate);
+	List<Festivity> findByStartDateBetween(Date startDate, Date endDate);
 
-	ArrayList<Festivity> findByDataRange(Date startDate, Date endDate);
-
-	ArrayList<Festivity> findByPlace(String namePlace);
-
-	Festivity newFestivity(FestivityDTO festivity);
-
-	Festivity updateFestivity(String name, FestivityDTO festivity);
+	List<Festivity> findByNamePlace(String namePlace);
 
 }

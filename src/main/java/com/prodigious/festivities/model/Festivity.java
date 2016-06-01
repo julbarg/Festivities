@@ -14,6 +14,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.prodigious.festivities.dto.FestivityDTO;
+import com.prodigious.festivities.util.Util;
+
 @Entity
 @Table(name = "festivity")
 public class Festivity {
@@ -21,8 +24,8 @@ public class Festivity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name = "festivity")
-	private Integer festivity;
+	@Column(name = "id")
+	private Integer id;
 
 	@Basic(optional = false)
 	@NotNull
@@ -47,6 +50,17 @@ public class Festivity {
 	@Size(min = 1, max = 200)
 	@Column(name = "name_place")
 	private String namePlace;
+
+	public Festivity() {
+
+	}
+
+	public Festivity(FestivityDTO festivityDTO) {
+		this.name = festivityDTO.getName();
+		this.startDate = Util.getDate(festivityDTO.getStart());
+		this.endDate = Util.getDate(festivityDTO.getEnd());
+		this.namePlace = festivityDTO.getPlace();
+	}
 
 	public String getName() {
 		return name;

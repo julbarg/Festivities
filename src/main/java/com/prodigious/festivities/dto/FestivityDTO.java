@@ -4,11 +4,11 @@ public class FestivityDTO {
 
 	private String name;
 
-	private String startDate;
+	private String start;
 
-	private String endDate;
+	private String end;
 
-	private String namePlace;
+	private String place;
 
 	public String getName() {
 		return name;
@@ -18,28 +18,28 @@ public class FestivityDTO {
 		this.name = name;
 	}
 
-	public String getStartDate() {
-		return startDate;
+	public String getStart() {
+		return start;
 	}
 
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+	public void setStart(String start) {
+		this.start = start;
 	}
 
-	public String getEndDate() {
-		return endDate;
+	public String getEnd() {
+		return end;
 	}
 
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
-	public String getNamePlace() {
-		return namePlace;
+	public String getPlace() {
+		return place;
 	}
 
-	public void setNamePlace(String namePlace) {
-		this.namePlace = namePlace;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 
 }
