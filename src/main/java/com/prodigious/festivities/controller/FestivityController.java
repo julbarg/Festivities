@@ -1,5 +1,6 @@
 package com.prodigious.festivities.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,19 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.prodigious.festivities.dto.FestivityDTO;
 import com.prodigious.festivities.model.Festivity;
 import com.prodigious.festivities.service.FestivityService;
 import com.prodigious.festivities.util.Util;
 
-@Controller
+@RestController
 @RequestMapping("/festivityapi")
 public class FestivityController {
 
@@ -38,11 +40,12 @@ public class FestivityController {
 	@RequestMapping(value = "/festivity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Festivity>> listAll() {
 
-		Iterable<Festivity> iterableFestivity = festivityService.findAll();
-		List<Festivity> listFestivity = new LinkedList<Festivity>();
-		for (Festivity festivity : iterableFestivity) {
+		ArrayList<Festivity> listFestivity = new ArrayList<Festivity>();
+
+		for (Festivity festivity : festivityService.findAll()) {
 			listFestivity.add(festivity);
 		}
+		System.out.println("SIZE: " + listFestivity.size());
 
 		if (listFestivity.isEmpty()) {
 			return new ResponseEntity<List<Festivity>>(HttpStatus.NOT_FOUND);
@@ -109,7 +112,8 @@ public class FestivityController {
 	public ResponseEntity<List<Festivity>> getFestityByNamePlace(
 			String namePlace) {
 
-		List<Festivity> festivities = festivityService.findByNamePlace(namePlace);
+		List<Festivity> festivities = festivityService
+				.findByNamePlace(namePlace);
 		if (festivities.isEmpty()) {
 			return new ResponseEntity<List<Festivity>>(HttpStatus.NOT_FOUND);
 		}
@@ -129,8 +133,7 @@ public class FestivityController {
 	}
 
 	@RequestMapping(value = "/festivity/update", method = RequestMethod.POST)
-	public ResponseEntity<Festivity> updateFestity(
-			@PathVariable("id") Integer id,
+	public ResponseEntity<Festivity> updateFestity(Integer id,
 			@RequestBody FestivityDTO festivityDTO) {
 
 		Festivity festivity = festivityService.findOne(id);
@@ -141,12 +144,25 @@ public class FestivityController {
 				.getStartDate());
 		festivity
 				.setEndDate(endDate != null ? endDate : festivity.getEndDate());
-		festivity.setNamePlace(festivityDTO.getPlace());
+		festivity.setNamePlace(festivity.getNamePlace());
 
 		festivityService.save(festivity);
 
 		return new ResponseEntity<Festivity>(festivity, HttpStatus.OK);
 
+	}
+
+	@RequestMapping(value = "/festivity/delete", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Void> delete(Integer id) {
+		try {
+			Festivity festivity = new Festivity(id);
+			festivityService.delete(festivity);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/festivity/load", method = RequestMethod.POST)

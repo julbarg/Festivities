@@ -55,11 +55,23 @@ public class Festivity {
 
 	}
 
+	public Festivity(Integer id) {
+		this.id = id;
+	}
+
 	public Festivity(FestivityDTO festivityDTO) {
 		this.name = festivityDTO.getName();
 		this.startDate = Util.getDate(festivityDTO.getStart());
 		this.endDate = Util.getDate(festivityDTO.getEnd());
 		this.namePlace = festivityDTO.getPlace();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
