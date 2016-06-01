@@ -117,8 +117,6 @@ public class FestivityController {
 		Festivity festivity = festivityService.updateFestivity(name,
 				festivityDTO);
 
-		System.out.println("Updating User " + festivityDTO.getName());
-
 		return new ResponseEntity<Festivity>(festivity, HttpStatus.OK);
 
 	}
