@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: Festivities API
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: Festivities
+Build-Jdk: 1.7.0_79
+Built-By: Julian Barragan
+Created-By: Maven Integration for Eclipse
+
