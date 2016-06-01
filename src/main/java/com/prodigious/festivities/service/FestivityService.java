@@ -9,15 +9,16 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.prodigious.festivities.model.Festivity;
 
+
 @Transactional
 public interface FestivityService extends CrudRepository<Festivity, Integer> {
 
-	List<Festivity> findByName(String name);
+   List<Festivity> findByName(String name);
 
-	List<Festivity> findByStartDateAfter(Date startDate);
+   List<Festivity> findByStartDateAfter(Date startDate);
 
-	List<Festivity> findByStartDateBetween(Date startDate, Date endDate);
+   List<Festivity> findByStartDateBetween(Date startDate, Date endDate);
 
-	List<Festivity> findByNamePlace(String namePlace);
+   List<Festivity> findByNamePlace(String namePlace);
 
 }

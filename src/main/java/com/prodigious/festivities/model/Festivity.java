@@ -17,93 +17,108 @@ import javax.validation.constraints.Size;
 import com.prodigious.festivities.dto.FestivityDTO;
 import com.prodigious.festivities.util.Util;
 
+
 @Entity
-@Table(name = "festivity")
+@Table(
+   name = "festivity")
 public class Festivity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
-	@Column(name = "id")
-	private Integer id;
+   @Id
+   @GeneratedValue(
+      strategy = GenerationType.IDENTITY)
+   @Basic(
+      optional = false)
+   @Column(
+      name = "id")
+   private Integer id;
 
-	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 200)
-	@Column(name = "name")
-	private String name;
+   @Basic(
+      optional = false)
+   @NotNull
+   @Size(
+      min = 1, max = 200)
+   @Column(
+      name = "name")
+   private String name;
 
-	@Basic(optional = false)
-	@NotNull
-	@Column(name = "start_date")
-	@Temporal(TemporalType.DATE)
-	private Date startDate;
+   @Basic(
+      optional = false)
+   @NotNull
+   @Column(
+      name = "start_date")
+   @Temporal(TemporalType.DATE)
+   private Date startDate;
 
-	@Basic(optional = false)
-	@NotNull
-	@Column(name = "end_date")
-	@Temporal(TemporalType.DATE)
-	private Date endDate;
+   @Basic(
+      optional = false)
+   @NotNull
+   @Column(
+      name = "end_date")
+   @Temporal(TemporalType.DATE)
+   private Date endDate;
 
-	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 200)
-	@Column(name = "name_place")
-	private String namePlace;
+   @Basic(
+      optional = false)
+   @NotNull
+   @Size(
+      min = 1, max = 200)
+   @Column(
+      name = "name_place")
+   private String namePlace;
 
-	public Festivity() {
+   public Festivity() {
 
-	}
+   }
 
-	public Festivity(Integer id) {
-		this.id = id;
-	}
+   public Festivity(Integer id) {
+      this.id = id;
+   }
 
-	public Festivity(FestivityDTO festivityDTO) {
-		this.name = festivityDTO.getName();
-		this.startDate = Util.getDate(festivityDTO.getStart());
-		this.endDate = Util.getDate(festivityDTO.getEnd());
-		this.namePlace = festivityDTO.getPlace();
-	}
+   public Festivity(FestivityDTO festivityDTO) {
+      this.name = festivityDTO.getName();
+      this.startDate = Util.getDate(festivityDTO.getStart());
+      this.endDate = Util.getDate(festivityDTO.getEnd());
+      this.namePlace = festivityDTO.getPlace();
+   }
 
-	public Integer getId() {
-		return id;
-	}
+   public Integer getId() {
+      return id;
+   }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+   public void setId(Integer id) {
+      this.id = id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public Date getStartDate() {
-		return startDate;
-	}
+   public Date getStartDate() {
+      return startDate;
+   }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+   public void setStartDate(Date startDate) {
+      this.startDate = startDate;
+   }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+   public Date getEndDate() {
+      return endDate;
+   }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+   public void setEndDate(Date endDate) {
+      this.endDate = endDate;
+   }
 
-	public String getNamePlace() {
-		return namePlace;
-	}
+   public String getNamePlace() {
+      return namePlace;
+   }
 
-	public void setNamePlace(String namePlace) {
-		this.namePlace = namePlace;
-	}
+   public void setNamePlace(String namePlace) {
+      this.namePlace = namePlace;
+   }
 
 }
