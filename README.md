@@ -3,7 +3,7 @@ Test Prodigious Festivities
 
 #Instruccions
 - Descompress Festivities.zip
-- Modify application.properties that is inside Festivities-0.0.1-SNAPSHOT.jar with the right information about the PostgresDB’s configuration.
+- Modify application.properties that is inside /target/Festivities-0.0.1-SNAPSHOT.jar with the right information about the PostgresDB’s configuration.
   #URL DATABASE
   spring.datasource.url = jdbc:postgresql://localhost/festivity
   # Username and password
